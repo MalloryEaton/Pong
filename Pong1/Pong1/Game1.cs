@@ -183,6 +183,7 @@ namespace Pong1
             {
                 swishSound.Play();
 
+                #region Check for which part of hand
                 //float ballMiddle = (ball.X + ball.Width) / 2;
                 //float paddleMiddle = (paddleComputer.X + paddleComputer.Width) / 2;
                 //if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
@@ -190,10 +191,10 @@ namespace Pong1
                 //{
                 //    ball.ChangeHorzDirection();
                 //}
-
-                ball.ChangeHorzDirection();
+                #endregion
 
                 // Go back up the screen and speed up
+                ball.ChangeHorzDirection();
                 ball.SpeedUp();                
             }
 
@@ -201,8 +202,7 @@ namespace Pong1
             {
                 bark.Play();
 
-                // If hitting the side of the paddle the ball is coming toward, 
-                // switch the ball's horz direction
+                #region Check for which part of hand
                 //float ballMiddle = (ball.X + ball.Width) / 2;
                 //float paddleMiddle = (paddleComputer.X + paddleComputer.Width) / 2;
                 //if ((ballMiddle < paddleMiddle && ball.SpeedX > 0) ||
@@ -210,6 +210,7 @@ namespace Pong1
                 //{
                 //    ball.ChangeHorzDirection();
                 //}
+                #endregion
 
                 // Go back up the screen and speed up
                 ball.ChangeHorzDirection();
@@ -226,7 +227,6 @@ namespace Pong1
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.White);
-            
             base.Draw(gameTime);
         }
     }

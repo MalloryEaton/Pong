@@ -15,13 +15,13 @@ namespace Pong1
         private Texture2D paddleHumanSprite;
         private Vector2 paddleHumanPosition;
 
-        public float X
+        new public float X
         {
             get { return paddleHumanPosition.X; }
             set { paddleHumanPosition.X = value; }
         }
 
-        public float Y
+        new public float Y
         {
             get { return paddleHumanPosition.Y; }
             set { paddleHumanPosition.Y = value; }
@@ -82,7 +82,6 @@ namespace Pong1
             float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             // Move paddle, but don't allow movement off the screen
-
             KeyboardState newKeyState = Keyboard.GetState();
             if (newKeyState.IsKeyDown(Keys.Down) && Y + paddleHumanSprite.Height
                 + moveDistance <= GraphicsDevice.Viewport.Height)

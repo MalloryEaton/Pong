@@ -16,13 +16,13 @@ namespace Pong1
         protected Vector2 paddleComputerPosition;
 
         #region Private Stuff
-        public float X
+        new public float X
         {
             get { return paddleComputerPosition.X; }
             set { paddleComputerPosition.X = value; }
         }
 
-        public float Y
+        new public float Y
         {
             get { return paddleComputerPosition.Y; }
             set { paddleComputerPosition.Y = value; }
@@ -67,8 +67,6 @@ namespace Pong1
             // Make sure base.Initialize() is called before this or Sprite will be null
             X = (GraphicsDevice.Viewport.Width - Width);
             Y = (GraphicsDevice.Viewport.Height / 2) - (Height / 2);
-
-            //Speed = DEFAULT_X_SPEED;
         }
 
         protected override void LoadContent()
@@ -79,23 +77,21 @@ namespace Pong1
 
         public override void Update(GameTime gameTime)
         {
-            // Scale the movement based on time
-            //float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
             float moveDistance = (float)0.04;
-            // Move paddle, but don't allow movement off the screen
 
+            // Move paddle, but don't allow movement off the screen
             Ball ball = Game.Components[0] as Ball;
             float ballMiddle = ball.ballPosition.Y;
             float paddleComputerMiddle = (paddleComputerPosition.Y);
             if((ballMiddle > paddleComputerMiddle) && (Y + paddleComputerSprite.Height + moveDistance <= GraphicsDevice.Viewport.Height))
             {
-                float ydown = (ballMiddle - paddleComputerMiddle) * moveDistance;
-                Y += ydown;
+                float yDown = (ballMiddle - paddleComputerMiddle) * moveDistance;
+                Y += yDown;
             }
             else if ((ballMiddle < paddleComputerMiddle) && (Y + moveDistance >= 0))
             {
-                float yup = (ballMiddle - paddleComputerMiddle) * moveDistance;
-                Y += yup;
+                float yUp = (ballMiddle - paddleComputerMiddle) * moveDistance;
+                Y += yUp;
             }
 
             base.Update(gameTime);
