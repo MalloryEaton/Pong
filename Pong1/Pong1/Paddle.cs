@@ -18,16 +18,16 @@ namespace Pong1
     public class Paddle : Microsoft.Xna.Framework.DrawableGameComponent
     {
         #region Private Members
-        private SpriteBatch spriteBatch;
-        private ContentManager contentManager;
+        protected SpriteBatch spriteBatch;
+        protected ContentManager contentManager;
 
         // Paddle sprite
-        private Texture2D paddleSprite;
+        //protected Texture2D paddleSprite;
 
         // Paddle location
-        private Vector2 paddlePosition;
+        protected Vector2 paddlePosition;
 
-        private const float DEFAULT_X_SPEED = 250;
+        protected const float DEFAULT_X_SPEED = 250;
 
         #endregion
 
@@ -56,30 +56,30 @@ namespace Pong1
             set { paddlePosition.Y = value; }
         }
 
-        public int Width
-        {
-            get { return paddleSprite.Width; }
-        }
+        //public int Width
+        //{
+        //    get { return paddleSprite.Width; }
+        //}
 
-        /// <summary>
-        /// Gets the height of the paddle's sprite.
-        /// </summary>
-        public int Height
-        {
-            get { return paddleSprite.Height; }
-        }
+        ///// <summary>
+        ///// Gets the height of the paddle's sprite.
+        ///// </summary>
+        //public int Height
+        //{
+        //    get { return paddleSprite.Height; }
+        //}
 
-        /// <summary>
-        /// Gets the bounding rectangle of the paddle.
-        /// </summary>
-        public Rectangle Boundary
-        {
-            get
-            {
-                return new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
-                    paddleSprite.Width, paddleSprite.Height);
-            }
-        }
+        ///// <summary>
+        ///// Gets the bounding rectangle of the paddle.
+        ///// </summary>
+        //public Rectangle Boundary
+        //{
+        //    get
+        //    {
+        //        return new Rectangle((int)paddlePosition.X, (int)paddlePosition.Y,
+        //            paddleSprite.Width, paddleSprite.Height);
+        //    }
+        //}
 
         #endregion
 
@@ -93,64 +93,68 @@ namespace Pong1
         /// Allows the game component to perform any initialization it needs to before starting
         /// to run.  This is where it can query for any required services and load content.
         /// </summary>
-        public override void Initialize()
-        {
-            base.Initialize();
+        //public override void Initialize()
+        //{
+        //    base.Initialize();
 
-            // Make sure base.Initialize() is called before this or handSprite will be null
-            X = (GraphicsDevice.Viewport.Width - Width) / 2;
-            Y = GraphicsDevice.Viewport.Height - Height;
+        //    // Make sure base.Initialize() is called before this or handSprite will be null
+        //    X = (GraphicsDevice.Viewport.Width - Width) / 2;
+        //    Y = GraphicsDevice.Viewport.Height - Height;
 
-            Speed = DEFAULT_X_SPEED;
-        }
+        //    Speed = DEFAULT_X_SPEED;
+        //}
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected override void LoadContent()
-        {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+        #region LoadContent
+        //protected override void LoadContent()
+        //{
+        //    spriteBatch = new SpriteBatch(GraphicsDevice);
             
-            paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
-        }
+        //    paddleSprite = contentManager.Load<Texture2D>(@"Content\Images\hand");
+        //}
+        #endregion
 
-        /// <summary>
-        /// Allows the game component to update itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Update(GameTime gameTime)
-        {
-            // Scale the movement based on time
-            float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+        #region Update method
+        ///// <summary>
+        ///// Allows the game component to update itself.
+        ///// </summary>
+        ///// <param name="gameTime">Provides a snapshot of timing values.</param>
+        //public override void Update(GameTime gameTime)
+        //{
+        //    // Scale the movement based on time
+        //    float moveDistance = Speed * (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // Move paddle, but don't allow movement off the screen
+        //    // Move paddle, but don't allow movement off the screen
 
-            KeyboardState newKeyState = Keyboard.GetState();
-            if (newKeyState.IsKeyDown(Keys.Right) && X + paddleSprite.Width
-                + moveDistance <= GraphicsDevice.Viewport.Width)
-            {
-                X += moveDistance;
-            }
-            else if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0)
-            {
-                X -= moveDistance;
-            }
+        //    KeyboardState newKeyState = Keyboard.GetState();
+        //    if (newKeyState.IsKeyDown(Keys.Right) && X + paddleSprite.Width
+        //        + moveDistance <= GraphicsDevice.Viewport.Width)
+        //    {
+        //        X += moveDistance;
+        //    }
+        //    else if (newKeyState.IsKeyDown(Keys.Left) && X - moveDistance >= 0)
+        //    {
+        //        X -= moveDistance;
+        //    }
             
-            base.Update(gameTime);
-        }
+        //    base.Update(gameTime);
+        //}
+        #endregion
 
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public override void Draw(GameTime gameTime)
-        {           
-            spriteBatch.Begin();
-            spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
-            spriteBatch.End();
+        //public override void Draw(GameTime gameTime)
+        //{           
+        //    spriteBatch.Begin();
+        //    spriteBatch.Draw(paddleSprite, paddlePosition, Color.White);
+        //    spriteBatch.End();
 
-            base.Draw(gameTime);
-        }
+        //    base.Draw(gameTime);
+        //}
     }
 }

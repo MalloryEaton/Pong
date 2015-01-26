@@ -26,8 +26,8 @@ namespace Pong1
         private const float DEFAULT_Y_SPEED = 150;
 
         // Initial location of the ball
-        private const float INIT_X_POS = 80;
-        private const float INIT_Y_POS = 0;
+        private const float INIT_X_POS = 365;
+        private const float INIT_Y_POS = 210;
 
         // Increase in speed each hit
         private const float INCREASE_SPEED = 50;
@@ -36,7 +36,7 @@ namespace Pong1
         private Texture2D ballSprite;
 
         // Ball location
-        Vector2 ballPosition;
+        public Vector2 ballPosition;
 
         // Ball's motion
         Vector2 ballSpeed = new Vector2(DEFAULT_X_SPEED, DEFAULT_Y_SPEED);
@@ -117,12 +117,39 @@ namespace Pong1
         /// <summary>
         /// Set the ball at the top of the screen with default speed.
         /// </summary>
+        /// 
+
+        Random rnd = new Random();
+        protected int GetRandomInt(int min, int max)
+        {
+            return rnd.Next(min, max);
+        }
+        
         public void Reset()
         {
-            ballSpeed.X = DEFAULT_X_SPEED;
-            ballSpeed.Y = DEFAULT_Y_SPEED;
+            int myIntX = GetRandomInt(1, 100);
+            int myIntY = GetRandomInt(1, 100);
 
-            ballPosition.Y = 0;
+            if (myIntX % 2 == 0)
+            {
+                ballSpeed.X = -150;
+            }
+            else
+            {
+                ballSpeed.X = 150;
+            }
+
+            if (myIntY % 2 == 0)
+            {
+                ballSpeed.Y = -150;
+            }
+            else
+            {
+                ballSpeed.Y = 150;
+            }
+
+            ballPosition.X = (GraphicsDevice.Viewport.Width / 2) - (ballSprite.Width/2);
+            ballPosition.Y = (GraphicsDevice.Viewport.Height / 2) - (ballSprite.Height/2);
 
             // Make sure ball is not positioned off the screen
             if (ballPosition.X < 0)
